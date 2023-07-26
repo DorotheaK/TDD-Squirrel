@@ -9,13 +9,18 @@ public class PieceMover
         _diceRoller = diceRoller;
     }
 
-    public  MovingResult Move(int previousPosition, int numberOfFields)
+    public MovingResult Move((int, int) position)
     {
-        var dieRoll = _diceRoller.RollDie();
-        var newPosition = CalculatePosition(previousPosition, dieRoll, numberOfFields);
-        var gameFinished = newPosition == numberOfFields;
-        return new MovingResult(newPosition, gameFinished);
+        return new MovingResult((0, 0), false);
     }
+
+    //public  MovingResult Move(int previousPosition, int numberOfFields)
+    //{
+    //    var dieRoll = _diceRoller.RollDie();
+    //    var newPosition = CalculatePosition(previousPosition, dieRoll, numberOfFields);
+    //    var gameFinished = newPosition == numberOfFields;
+    //    return new MovingResult(newPosition, gameFinished);
+    //}
 
     private static int CalculatePosition(int previousPosition, int dieResult, int numberOfFields)
     {
