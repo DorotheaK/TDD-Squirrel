@@ -18,7 +18,9 @@ public class PieceMover
 
     private static (int, int) CalculatePosition((int, int) previousPosition, int dieRoll)
     {
-        return (1, 3);
+        var newX = previousPosition.Item1 + dieRoll;
+        var newY = previousPosition.Item2;
+        return (newX, newY);
     }
 
     //public  MovingResult Move(int previousPosition, int numberOfFields)
