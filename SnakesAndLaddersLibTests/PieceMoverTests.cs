@@ -47,6 +47,8 @@ namespace SnakesAndLaddersLibTests
         [TestCase(0, 3, 1, 1, 3)]
         [TestCase(0, 3, 2, 2, 3)]
         [TestCase(0, 3, 4, 3, 2)]
+        [TestCase(3, 2, 1, 2, 2)]
+
         public void Move_Should_ReturnExpected(int x, int y, int movement, int expectedX, int expectedY)
         {
             A.CallTo(() => _diceRoller.RollDie()).Returns(movement);
