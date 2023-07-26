@@ -9,9 +9,16 @@ public class PieceMover
         _diceRoller = diceRoller;
     }
 
-    public MovingResult Move((int, int) position)
+    public MovingResult Move((int, int) previousPosition)
     {
-        return new MovingResult((1, 3), false);
+        var dieRoll = _diceRoller.RollDie();
+        var newPosition = CalculatePosition(previousPosition, dieRoll);
+        return new MovingResult(newPosition, false);
+    }
+
+    private static (int, int) CalculatePosition((int, int) previousPosition, int dieRoll)
+    {
+        return (1, 3);
     }
 
     //public  MovingResult Move(int previousPosition, int numberOfFields)
