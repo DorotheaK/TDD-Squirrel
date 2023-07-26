@@ -3,6 +3,7 @@
 public class PieceMover
 {
     private readonly IDiceRoller _diceRoller;
+    private readonly int _size = 4;
 
     public PieceMover(IDiceRoller diceRoller)
     {
@@ -16,10 +17,17 @@ public class PieceMover
         return new MovingResult(newPosition, false);
     }
 
-    private static (int, int) CalculatePosition((int, int) previousPosition, int dieRoll)
+    private  (int, int) CalculatePosition((int, int) previousPosition, int dieRoll)
     {
         var newX = previousPosition.Item1 + dieRoll;
         var newY = previousPosition.Item2;
+        if (newX > _size - 1)
+        {
+            var overflow = newX - (_size - 1);
+            newX =_size - overflow;
+            newY -= 1;
+        }
+
         return (newX, newY);
     }
 
