@@ -11,7 +11,7 @@ public class PieceMover
 
     public MovingResult Move((int, int) position)
     {
-        return new MovingResult((0, 0), false);
+        return new MovingResult((1, 3), false);
     }
 
     //public  MovingResult Move(int previousPosition, int numberOfFields)
