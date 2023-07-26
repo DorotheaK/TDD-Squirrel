@@ -1,4 +1,5 @@
-﻿using FakeItEasy;
+﻿using System.Diagnostics.CodeAnalysis;
+using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using SnakesAndLaddersLib;
@@ -43,12 +44,12 @@ namespace SnakesAndLaddersLibTests
         //    result.IsFinalSquareReached.Should().Be(expected);
         //}
 
-        [Test]
-        public void MoveTests()
+        [TestCase(0, 3, 1, 1, 3)]
+        public void Move_Should_ReturnExpected(int x, int y, int movement, int expectedX, int expectedY)
         {
-            A.CallTo(() => _diceRoller.RollDie()).Returns(1);
-            var result = _sut.Move((0, 3));
-            result.Position.Should().Be((1,3));
+            A.CallTo(() => _diceRoller.RollDie()).Returns(movement);
+            var result = _sut.Move((x, y));
+            result.Position.Should().Be((expectedX,expectedY));
         }
 
     }
