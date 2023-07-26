@@ -1,15 +1,9 @@
 ﻿@page "/game"
 @using TDD_Squirrel.Components
 <h3>Schlange-Leiter-Spiel</h3>
-
-<h4>Aufgabe 1</h4>
 <div>
-    <ul>
-        <li>Anzahl Spielfelder: @NumberOfFields</li>
-        <li>Spielfigur rückt um die gewürfelte Anzahl Felder vor</li>
-        <li>Ist das Ziel erreicht, ist ein Würfeln nicht mehr möglich</li>
-    </ul>
-</div> 
+    <input type="number" min="0" @bind-value="@_prepartionBoardSize"/>&nbsp;Spielfeldgröße
+</div>
 <button @onclick="StartNewGame"> Spiel starten</button>
 <div>
     @if (ShowGame)
@@ -19,17 +13,22 @@
         <button @onclick="MovePiece" disabled="@DisabledDie">Die</button>
 
         <div>
-            @for (var i = 1; i < NumberOfFields + 1; i++)
+            @for (var y = 0; y < NumberOfRows + 1; y++)
             {
-                var i1 = i;
-                <Field>
-                    @if (i1 == PiecePosition)
+                <div class="row-content">
+                    @for (var i = 1; i < NumberOfFields + 1; i++)
                     {
-                        <div class="field-content">
-                            <GameFigure></GameFigure>
-                        </div>
+                        var localColumnIndex = i;
+                        <Field>
+                            @if (localColumnIndex == PiecePosition)
+                            {
+                                <div class="field-content">
+                                    <GameFigure></GameFigure>
+                                </div>
+                            }
+                        </Field>
                     }
-                </Field>
+                </div>
             }
         </div>
     }

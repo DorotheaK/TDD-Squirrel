@@ -1,17 +1,20 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using SnakesAndLaddersLib;
+﻿using SnakesAndLaddersLib;
 
 namespace TDD_Squirrel.Pages
 {
     public partial class Game
     {
+        private int _prepartionBoardSize = 0;
+
         private PieceMover pieceMover;
         public Game()
         {
             var diceRoller = new DiceRoller();
             pieceMover = new PieceMover(diceRoller);
         }
-        public int NumberOfFields = 10;
+
+        private int NumberOfFields = 0;
+        private int NumberOfRows = 0;
 
         public int PiecePosition = 0;
 
@@ -20,18 +23,19 @@ namespace TDD_Squirrel.Pages
 
         private void MovePiece()
         {
-            var result =  pieceMover.Move(PiecePosition, NumberOfFields);
+            var result = pieceMover.Move(PiecePosition, NumberOfFields);
             DisabledDie = result.IsFinalSquareReached;
             PiecePosition = result.Position;
         }
 
         private void StartNewGame()
         {
-            var game = GameCreator.CreateGame(15);
+            var game = GameCreator.CreateGame(_prepartionBoardSize);
             DisabledDie = game.IsDieDisabled;
             ShowGame = game.Status;
             //PiecePosition = game.Position;
-            NumberOfFields = game.Rows;
+            NumberOfFields = game.Columns;
+            NumberOfRows = game.Rows;
         }
     }
 }
