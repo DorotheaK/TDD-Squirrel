@@ -4,7 +4,7 @@ namespace TDD_Squirrel.Pages
 {
     public partial class Game
     {
-        private int _prepartionBoardSize = 0;
+        private int _prepartionBoardSize = 1;
 
         private PieceMover pieceMover;
         public Game()
@@ -33,7 +33,7 @@ namespace TDD_Squirrel.Pages
             var game = GameCreator.CreateGame(_prepartionBoardSize);
             DisabledDie = game.IsDieDisabled;
             ShowGame = game.Status;
-            //PiecePosition = game.Position;
+            PiecePosition = 0;
             NumberOfFields = game.Columns;
             NumberOfRows = game.Rows;
         }
