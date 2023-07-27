@@ -48,6 +48,13 @@ namespace SnakesAndLaddersLibTests
         [TestCase(0, 3, 2, 2, 3)]
         [TestCase(0, 3, 4, 3, 2)]
         [TestCase(3, 2, 1, 2, 2)]
+        [TestCase(3, 3, 2, 2, 2)]
+        [TestCase(0, 2, 2, 1, 1)]
+        [TestCase(3, 3, 6, 1, 1)]
+        [TestCase(0, 2, 6, 2, 0)]
+        [TestCase(0, 2, 6, 2, 0)]
+        [TestCase(2, 0, 6, 0, 0)]
+
 
         public void Move_Should_ReturnExpected(int x, int y, int movement, int expectedX, int expectedY)
         {

@@ -1,4 +1,6 @@
-﻿namespace SnakesAndLaddersLib;
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace SnakesAndLaddersLib;
 
 public class PieceMover
 {
@@ -19,15 +21,42 @@ public class PieceMover
 
     private  (int, int) CalculatePosition((int, int) previousPosition, int dieRoll)
     {
-        var newX = previousPosition.Item1 + dieRoll;
+        var newX = previousPosition.Item1;
         var newY = previousPosition.Item2;
-        if (newX > _size - 1)
+        if (previousPosition.Item2 % 2 == 0)
         {
-            var overflow = newX - (_size - 1);
-            newX =_size - overflow;
-            newY -= 1;
+             newX = previousPosition.Item1 - dieRoll;
+             newY = previousPosition.Item2;
+        }
+        else
+        {
+            newX = previousPosition.Item1 + dieRoll;
+            newY = previousPosition.Item2;
         }
 
+        while (newX > _size -1 || newX < 0)
+        {
+            if (newX > _size - 1)
+            {
+                var overflow = newX - (_size - 1);
+                newX = _size - overflow;
+                newY -= 1;
+            }
+
+            if (newX < 0)
+            {
+                var overflow = -newX - 1;
+                newX = overflow;
+                newY -= 1;
+            }
+
+            if (newY < 0)
+            {
+                newX = 0;
+                newY = 0;
+                break;
+            }
+        }
 
         return (newX, newY);
     }
