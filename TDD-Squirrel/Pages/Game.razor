@@ -6,21 +6,23 @@
 </div>
 <button @onclick="StartNewGame"> Spiel starten</button>
 <div>
-    @if (ShowGame)
+    @if (_showGame)
     {
         <h5>Spielbrett</h5>
 
-        <button @onclick="MovePiece" disabled="@DisabledDie">Die</button>
+        <button @onclick="MovePiece" disabled="@_disabledDie">Die</button>
 
         <div>
-            @for (var y = 0; y < NumberOfRows; y++)
+            @for (var y = 0; y < _numberOfRows; y++)
             {
+                var currentYIndex = y;
                 <div class="row-content">
-                    @for (var i = 1; i < NumberOfFields + 1; i++)
+                    @for (var i = 0; i < _numberOfFields + 1; i++)
                     {
-                        var localColumnIndex = i;
+                        var currentXIndex = i;
+                        var position = (currentXIndex, currentYIndex);
                         <Field>
-                            @if (localColumnIndex == PiecePosition)
+                            @if (position == _piecePosition)
                             {
                                 <div class="field-content">
                                     <GameFigure></GameFigure>
@@ -32,5 +34,4 @@
             }
         </div>
     }
-
 </div>

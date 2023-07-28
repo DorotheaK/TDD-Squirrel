@@ -6,36 +6,39 @@ namespace TDD_Squirrel.Pages
     {
         private int _prepartionBoardSize = 1;
 
-        private PieceMover pieceMover;
+        private readonly PieceMover _pieceMover;
         public Game()
         {
             var diceRoller = new DiceRoller();
-            pieceMover = new PieceMover(diceRoller);
+            _pieceMover = new PieceMover(diceRoller);
         }
 
-        private int NumberOfFields = 0;
-        private int NumberOfRows = 0;
+        private int _numberOfFields = 0;
+        private int _numberOfRows = 0;
 
-        public int PiecePosition = 0;
+        private (int, int) _piecePosition = default!;
 
-        public bool DisabledDie = false;
-        public bool ShowGame = false;
+        private bool _disabledDie = false;
+        private bool _showGame = false;
 
         private void MovePiece()
         {
-            var result = pieceMover.Move(PiecePosition, NumberOfFields);
-            DisabledDie = result.IsFinalSquareReached;
-            PiecePosition = result.Position;
+            var result = _pieceMover.Move(_piecePosition);
+            _disabledDie = result.IsFinalSquareReached;
+
+            _piecePosition = result.Position;
         }
 
         private void StartNewGame()
         {
             var game = GameCreator.CreateGame(_prepartionBoardSize);
-            DisabledDie = game.IsDieDisabled;
-            ShowGame = game.Status;
-            PiecePosition = 0;
-            NumberOfFields = game.Columns;
-            NumberOfRows = game.Rows;
+            _disabledDie = game.IsDieDisabled;
+            _showGame = game.Status;
+            _numberOfFields = game.Columns;
+            _numberOfRows = game.Rows;
+
+            //Set start position
+            _piecePosition = (0, game.Rows - 1);
         }
     }
 }
