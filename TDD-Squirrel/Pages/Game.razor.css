@@ -1,0 +1,7 @@
+﻿.row-content {
+    display: flex;
+}
+
+.field-content {
+    display: table;
+}

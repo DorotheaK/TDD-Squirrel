@@ -1,0 +1,36 @@
+﻿@page "/game"
+@using TDD_Squirrel.Components
+<h3>Schlange-Leiter-Spiel</h3>
+<div>
+    <input type="number" min="1" @bind-value="@_prepartionBoardSize"/>&nbsp;Spielfeldgröße
+</div>
+<button @onclick="StartNewGame"> Spiel starten</button>
+<div>
+    @if (ShowGame)
+    {
+        <h5>Spielbrett</h5>
+
+        <button @onclick="MovePiece" disabled="@DisabledDie">Die</button>
+
+        <div>
+            @for (var y = 0; y < NumberOfRows; y++)
+            {
+                <div class="row-content">
+                    @for (var i = 1; i < NumberOfFields + 1; i++)
+                    {
+                        var localColumnIndex = i;
+                        <Field>
+                            @if (localColumnIndex == PiecePosition)
+                            {
+                                <div class="field-content">
+                                    <GameFigure></GameFigure>
+                                </div>
+                            }
+                        </Field>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+</div>

@@ -1,4 +1,4 @@
-namespace SnakesAndLadders;
+﻿namespace SnakesAndLaddersLib;
 
 public interface IDiceRoller
 {
