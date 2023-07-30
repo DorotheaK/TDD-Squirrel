@@ -4,14 +4,9 @@ namespace TDD_Squirrel.Pages
 {
     public partial class Game
     {
-        private int _prepartionBoardSize = 1;
+        private int _preparationBoardSize = 1;
 
-        private readonly PieceMover _pieceMover;
-        public Game()
-        {
-            var diceRoller = new DiceRoller();
-            _pieceMover = new PieceMover(diceRoller);
-        }
+        private PieceMover? _pieceMover;
 
         private int _numberOfFields = 0;
         private int _numberOfRows = 0;
@@ -23,7 +18,7 @@ namespace TDD_Squirrel.Pages
 
         private void MovePiece()
         {
-            var result = _pieceMover.Move(_piecePosition);
+            var result = _pieceMover?.Move(_piecePosition);
             _disabledDie = result.IsFinalSquareReached;
 
             _piecePosition = result.Position;
@@ -31,11 +26,13 @@ namespace TDD_Squirrel.Pages
 
         private void StartNewGame()
         {
-            var game = GameCreator.CreateGame(_prepartionBoardSize);
+            var game = GameCreator.CreateGame(_preparationBoardSize);
             _disabledDie = game.IsDieDisabled;
             _showGame = game.Status;
             _numberOfFields = game.Columns;
             _numberOfRows = game.Rows;
+            var diceRoller = new DiceRoller();
+            _pieceMover = new PieceMover(diceRoller, _preparationBoardSize);
 
             //Set start position
             _piecePosition = (0, game.Rows - 1);

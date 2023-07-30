@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using FakeItEasy;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -8,16 +9,6 @@ namespace SnakesAndLaddersLibTests
 {
     public class PieceMoverTests
     {
-        private IDiceRoller _diceRoller;
-        private PieceMover _sut;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _diceRoller = A.Fake<IDiceRoller>();
-            _sut = new PieceMover(_diceRoller);
-        }
-
         //[TestCase(0, 1, 1)]
         //[TestCase(5, 2, 7)]
         //[TestCase(5, 5, 10)]
@@ -44,22 +35,42 @@ namespace SnakesAndLaddersLibTests
         //    result.IsFinalSquareReached.Should().Be(expected);
         //}
 
-        [TestCase(0, 3, 1, 1, 3)]
-        [TestCase(0, 3, 2, 2, 3)]
-        [TestCase(0, 3, 4, 3, 2)]
-        [TestCase(3, 2, 1, 2, 2)]
-        [TestCase(3, 3, 2, 2, 2)]
-        [TestCase(0, 2, 2, 1, 1)]
-        [TestCase(3, 3, 6, 1, 1)]
-        [TestCase(0, 2, 6, 2, 0)]
-        [TestCase(0, 2, 6, 2, 0)]
-        [TestCase(2, 0, 6, 0, 0)]
+        
+        [TestCase(3, 2, 1, 4, 2, 2)]
+        [TestCase(3, 3, 2, 4, 2, 2)]
+        [TestCase(0, 2, 2, 4, 1, 1)]
+        [TestCase(3, 3, 6, 4, 1, 1)]
+        [TestCase(0, 2, 6, 4, 2, 0)]
+        [TestCase(0, 2, 6, 4, 2, 0)]
+        [TestCase(2, 0, 6, 4,  0, 0)]
+        
+        [TestCase(0, 4, 1, 5, 1, 4)] // move right
+        [TestCase(0, 3, 1, 4, 1, 3)]
+        [TestCase(0, 3, 2, 4, 2, 3)]
 
 
-        public void Move_Should_ReturnExpected(int x, int y, int movement, int expectedX, int expectedY)
+        // move up - on right side
+        [TestCase(0, 4, 5, 5, 4, 3)]
+        [TestCase(0, 3, 4, 4, 3, 2)]
+
+
+        [TestCase(3, 3, 1, 5, 2, 3)] //move left
+
+        [TestCase(0, 3, 2, 5, 1, 2)] // move up on left side
+
+        [TestCase(4, 4, 6, 5, 0, 2)]  // snake
+        [TestCase(0, 3, 6, 5, 4, 1)]
+        [TestCase(0, 2, 6, 5, 2, 0)]
+        [TestCase(2, 0, 6, 5,  4, 0)]  // end
+
+
+        public void Move_Should_ReturnExpected(int x, int y, int movement,int size, int expectedX, int expectedY)
         {
-            A.CallTo(() => _diceRoller.RollDie()).Returns(movement);
-            var result = _sut.Move((x, y));
+            var diceRoller = A.Fake<IDiceRoller>();
+            var sut = new PieceMover(diceRoller, size);
+            A.CallTo(() => diceRoller.RollDie()).Returns(movement);
+
+            var result = sut.Move((x, y));
             result.Position.Should().Be((expectedX,expectedY));
         }
 

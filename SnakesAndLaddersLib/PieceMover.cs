@@ -5,11 +5,12 @@ namespace SnakesAndLaddersLib;
 public class PieceMover
 {
     private readonly IDiceRoller _diceRoller;
-    private readonly int _size = 4;
+    private readonly int _size;
 
-    public PieceMover(IDiceRoller diceRoller)
+    public PieceMover(IDiceRoller diceRoller, int size)
     {
         _diceRoller = diceRoller;
+        _size = size;
     }
 
     public MovingResult Move((int, int) previousPosition)
