@@ -10,6 +10,10 @@
         <li>Ist das Ziel erreicht, ist ein Würfeln nicht mehr möglich</li>
     </ul>
 </div> 
+<span class="input-content">
+    <input type="number" class="input-numbers" name="numberOfFieldsInput" min="0" @bind-value="@PreparationBoardSize" /><label>Anz. Spielfelder pro Reihe</label>
+</span>
+<br/>
 <button @onclick="StartNewGame"> Spiel starten</button>
 <div>
     @if (ShowGame)

@@ -12,6 +12,7 @@ namespace TDD_Squirrel.Pages
             pieceMover = new PieceMover(diceRoller);
         }
         public int NumberOfFields = 10;
+        public int PreparationBoardSize = 10;
 
         public int PiecePosition = 0;
 
@@ -27,7 +28,7 @@ namespace TDD_Squirrel.Pages
 
         private void StartNewGame()
         {
-            var game = GameCreator.CreateGame(15);
+            var game = GameCreator.CreateGame(PreparationBoardSize);
             DisabledDie = game.IsDieDisabled;
             ShowGame = game.Status;
             PiecePosition = game.Position;
