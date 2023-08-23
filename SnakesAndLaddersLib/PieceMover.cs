@@ -24,18 +24,36 @@ public class PieceMover
     {
         var newX = previousPosition.Item1;
         var newY = previousPosition.Item2;
-        if (previousPosition.Item2 % 2 == 0)
+
+        if (_size % 2 == 0)  // _size of the board is even
         {
-             newX = previousPosition.Item1 - dieRoll;
-             newY = previousPosition.Item2;
+            if (previousPosition.Item2 % 2 == 0)
+            {
+                 newX = previousPosition.Item1 - dieRoll;
+                 newY = previousPosition.Item2;
+            }
+            else
+            {
+                newX = previousPosition.Item1 + dieRoll;
+                newY = previousPosition.Item2;
+            }
+
         }
-        else
+        else // _size if the board is odd
         {
-            newX = previousPosition.Item1 + dieRoll;
-            newY = previousPosition.Item2;
+            if (previousPosition.Item2 % 2 == 0)
+            {
+                newX = previousPosition.Item1 + dieRoll;
+                newY = previousPosition.Item2;
+            }
+            else
+            {
+                newX = previousPosition.Item1 - dieRoll;
+                newY = previousPosition.Item2;
+            }
         }
 
-        while (newX > _size -1 || newX < 0)
+        while (newX > _size - 1 || newX < 0)
         {
             if (newX > _size - 1)
             {
@@ -58,6 +76,7 @@ public class PieceMover
                 break;
             }
         }
+
 
         return (newX, newY);
     }
