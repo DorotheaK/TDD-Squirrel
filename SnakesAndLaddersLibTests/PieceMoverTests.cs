@@ -60,8 +60,8 @@ namespace SnakesAndLaddersLibTests
 
         [TestCase(4, 4, 6, 5, 0, 2)]  // snake 
         [TestCase(0, 3, 6, 5, 4, 1)]  
-        [TestCase(0, 2, 6, 5, 3, 1)] 
-        [TestCase(2, 0, 6, 5,  4, 0)]  // end ; found 0,0 --> TODO: Funktion korrigieren
+        [TestCase(0, 2, 6, 5, 3, 1)] // found 4,0
+        [TestCase(2, 0, 6, 5,  4, 0)]  // end 
 
 
         public void Move_Should_ReturnExpected(int x, int y, int movement,int size, int expectedX, int expectedY)

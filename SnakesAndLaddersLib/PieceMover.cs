@@ -69,11 +69,19 @@ public class PieceMover
                 newY -= 1;
             }
 
-            if (newY < 0)
+            if (_size % 2 == 0)  // _size of the board is even
             {
-                newX = 0;
+                if (newY < 0) 
+                {
+                    newX = 0;
+                    newY = 0;
+                    break;
+                }
+            }
+            else // _size if the board is odd
+            {
+                newX = _size - 1;
                 newY = 0;
-                break;
             }
         }
 
