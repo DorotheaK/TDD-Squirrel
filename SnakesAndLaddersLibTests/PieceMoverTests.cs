@@ -81,9 +81,14 @@ namespace SnakesAndLaddersLibTests
         [TestCase(2, 3, 2)]
         [TestCase(0, 3, 2)]
         [TestCase(3, 3, 2)]
-
+        [TestCase(0, 3, 2)]
+        [TestCase(3, 1, 0)]
+        [TestCase(0, 1, 0)]
         // size > 4
         [TestCase(2, 4, 3)]
+        [TestCase(4, 1, 0)]
+        [TestCase(4, 1, 0)]
+        [TestCase(0, 1, 0)]
         public void Move_On_Ladder_Should_Return_ExpectedYField(int xPosition, int yPosition , int expectedPosition)// später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
         {
             // later: var result = LadderMove(previousPosition); 
