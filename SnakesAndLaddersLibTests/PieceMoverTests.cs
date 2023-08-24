@@ -89,7 +89,7 @@ namespace SnakesAndLaddersLibTests
         {
             var newPosition = (endLadder01X, endLadder01Y);
 
-            return 0;//new LadderResult(newPosition, false);
+            return 2;//new LadderResult(newPosition, false);
 
         }
     }
