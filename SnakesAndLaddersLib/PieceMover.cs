@@ -80,8 +80,12 @@ public class PieceMover
             }
             else // _size if the board is odd
             {
-                newX = _size - 1;
-                newY = 0;
+                if (newY < 0)
+                {
+                    newX = _size - 1;
+                    newY = 0;
+                    break;
+                }
             }
         }
 
