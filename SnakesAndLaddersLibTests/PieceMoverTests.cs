@@ -74,22 +74,28 @@ namespace SnakesAndLaddersLibTests
             result.Position.Should().Be((expectedX,expectedY));
         }
 
-        // Ladder from (2,4) to (2,3)
+        // Ladder from (2,3) to (2,2) ***************************************************************************************************************************************
+        // In the following part a small ladder is implemented and tested. The ladder lets you reduce the y-position by 1.
+
         // [TestCase] (2, 3, )]
 
         //TODO: in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
         [Test]
-        public void Move_On_Ladder_Should_Return_2()//danach: _2 ergänzen; später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
+        public void Move_On_Ladder_Should_Return_2()// später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
         {
-            var result = LadderMove((2, 3), 2, 2);
-            result.Should().Be(2); //later: (2, 2)
+            var result = LadderMove((2, 3), 2);
+            result.Should().Be(2); 
         }
 
-        public int LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)// later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
+        public int LadderMove((int, int) previousPosition, int endLadder01X) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
         {
-            var newPosition = (endLadder01X, endLadder01Y);
+            var oldX = previousPosition.Item1;
+            var oldY = previousPosition.Item2;
 
-            return 2;//new LadderResult(newPosition, false);
+            var newX = oldX;
+            var newY = oldY - 1;
+
+            return newY;//new LadderResult(newPosition, false);
 
         }
     }
