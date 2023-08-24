@@ -79,23 +79,28 @@ namespace SnakesAndLaddersLibTests
 
         // [TestCase] (2, 3, )]
 
-        //TODO: in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
-        [Test]
-        public void Move_On_Ladder_Should_Return_2()// später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
+        //TODO: evtl. in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
+        [TestCase(2, 3, 2)]
+        public void Move_On_Ladder_Should_Return_ExpectedYField(int xPosition, int yPosition , int expectedPosition)// später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
         {
-            var result = LadderMove((2, 3), 2);
-            result.Should().Be(2); 
+            // later: var result = LadderMove(previousPosition); 
+            var oldX = xPosition; // later: previousPosition.Item1;
+            var oldY = yPosition; // later: previousPosition.Item2;
+
+            var result = LadderMove(oldX, oldY);
+
+            result.Should().Be(expectedPosition); 
         }
 
-        public int LadderMove((int, int) previousPosition, int endLadder01X) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
+        public int LadderMove(int x, int y)// later: (int, int) previousPosition) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
         {
-            var oldX = previousPosition.Item1;
-            var oldY = previousPosition.Item2;
+            var oldX = x;// later: previousPosition.Item1;
+            var oldY = y; // later: previousPosition.Item2;
 
             var newX = oldX;
             var newY = oldY - 1;
 
-            return newY;//new LadderResult(newPosition, false);
+            return newY;//later: new LadderResult(newPosition, false);
 
         }
     }
