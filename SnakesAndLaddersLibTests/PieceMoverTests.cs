@@ -77,10 +77,13 @@ namespace SnakesAndLaddersLibTests
         // Ladder from (2,3) to (2,2) ***************************************************************************************************************************************
         // In the following part a small ladder is implemented and tested. The ladder lets you reduce the y-position by 1.
 
-        // [TestCase] (2, 3, )]
-
         //TODO: evtl. in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
         [TestCase(2, 3, 2)]
+        [TestCase(0, 3, 2)]
+        [TestCase(3, 3, 2)]
+
+        // size > 4
+        [TestCase(2, 4, 3)]
         public void Move_On_Ladder_Should_Return_ExpectedYField(int xPosition, int yPosition , int expectedPosition)// später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
         {
             // later: var result = LadderMove(previousPosition); 
