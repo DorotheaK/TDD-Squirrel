@@ -75,19 +75,21 @@ namespace SnakesAndLaddersLibTests
         }
 
         // Ladder from (2,4) to (2,3)
-       // [TestCase] (2, 3, )]
+        // [TestCase] (2, 3, )]
 
-       //TODO: in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
-        public void Move_On_Ladder_Should_Return_End_of_Ladder(int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY)
+        //TODO: in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
+        [Test]
+        public void Move_On_Ladder_Should_Return_2()//danach: _2 ergänzen; später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
         {
-            
+            var result = LadderMove((2, 3), 2, 2);
+            result.Should().Be(2); //later: (2, 2)
         }
 
-        public LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
+        public int LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)// later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
         {
             var newPosition = (endLadder01X, endLadder01Y);
 
-            return new LadderResult(newPosition, false);
+            return 0;//new LadderResult(newPosition, false);
 
         }
     }
