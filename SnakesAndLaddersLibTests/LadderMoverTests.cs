@@ -66,7 +66,7 @@ public class LadderMoverTests
     //    var startPosition = CreateLadder();
     //}
 
-    private int CreateLadder()
+    private static int CreateLadder()
     {
         var random = new Random();
         var result = random.Next(1, 4);
