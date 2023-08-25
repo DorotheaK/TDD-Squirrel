@@ -31,7 +31,7 @@ public class LadderMoverTests
 
         var result = LadderMove(oldX, oldY);
         result.Should().Be(expectedPosition);
-       // AssertionExtensions.Should((int)result).Be(expectedPosition); 
+       // AssertionExtensions.Should((int)result).Be(expectedPosition); <-- wurde bei Umzug in neue Klasse automatisch erstellt
     }
 
     public static int LadderMove(int x, int y)// later: (int, int) previousPosition) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
@@ -59,6 +59,12 @@ public class LadderMoverTests
         startPosition.Should().BeInRange(1, 4); // maxY);
         //AssertionExtensions.Should((int)startPosition).BeInRange(1, 4); 
     }
+
+   // [Test]
+    //public void CreateLadder_Should_Return_IntInRange1ToSizeMinus1(int size)
+    //{
+    //    var startPosition = CreateLadder();
+    //}
 
     private int CreateLadder()
     {
