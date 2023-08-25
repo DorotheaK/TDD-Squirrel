@@ -1,4 +1,4 @@
-﻿namespace SnakesAndLaddersLibTests;
+﻿namespace SnakesAndLaddersLib;
 
 public class PieceOnLadderMover
 {
