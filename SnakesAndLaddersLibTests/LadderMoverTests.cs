@@ -29,21 +29,9 @@ public class LadderMoverTests
         var oldX = xPosition; // later: previousPosition.Item1;
         var oldY = yPosition; // later: previousPosition.Item2;
 
-        var result = LadderMove(oldX, oldY);
+        var result = PieceOnLadderMover.LadderMove(oldX, oldY);
         result.Should().Be(expectedPosition);
        // AssertionExtensions.Should((int)result).Be(expectedPosition); <-- wurde bei Umzug in neue Klasse automatisch erstellt
-    }
-
-    public static int LadderMove(int x, int y)// later: (int, int) previousPosition) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
-    {
-        var oldX = x;// later: previousPosition.Item1;
-        var oldY = y; // later: previousPosition.Item2;
-
-        var newX = oldX;
-        var newY = oldY - 1;
-
-        return newY;//later: new LadderResult(newPosition, false);
-
     }
 
     [Test]
@@ -51,7 +39,7 @@ public class LadderMoverTests
     // so make sure the starting position of a ladder > 0 (and here <= 4)
     public void CreateLadder_Should_Return_IntInRange1To4() //later: int size
     {
-        var startPosition = CreateLadder();
+        var startPosition = PieceOnLadderMover.CreateLadder();
         startPosition.Should().BeOfType(typeof(int));
         //AssertionExtensions.Should((int)startPosition).BeOfType(typeof(int));
 
@@ -65,11 +53,4 @@ public class LadderMoverTests
     //{
     //    var startPosition = CreateLadder();
     //}
-
-    private static int CreateLadder()
-    {
-        var random = new Random();
-        var result = random.Next(1, 4);
-        return result;
-    }
 }
