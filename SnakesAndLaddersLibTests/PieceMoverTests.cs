@@ -100,7 +100,7 @@ namespace SnakesAndLaddersLibTests
             result.Should().Be(expectedPosition); 
         }
 
-        public int LadderMove(int x, int y)// later: (int, int) previousPosition) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
+        public static int LadderMove(int x, int y)// later: (int, int) previousPosition) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
         {
             var oldX = x;// later: previousPosition.Item1;
             var oldY = y; // later: previousPosition.Item2;
