@@ -126,7 +126,7 @@ namespace SnakesAndLaddersLibTests
 
         private int CreateLadder()
         {
-            return 0;
+            return 1;
         }
     }
 }
