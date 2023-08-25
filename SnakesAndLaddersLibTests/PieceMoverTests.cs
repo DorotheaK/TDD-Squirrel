@@ -74,7 +74,7 @@ namespace SnakesAndLaddersLibTests
             result.Position.Should().Be((expectedX,expectedY));
         }
 
-        // Ladder from (2,3) to (2,2) ***************************************************************************************************************************************
+        // Ladder ***************************************************************************************************************************************
         // In the following part a small ladder is implemented and tested. The ladder lets you reduce the y-position by 1.
 
         //TODO: evtl. in weiterem Schritt ladder als Objekt erzeugen lassen und hier als Parameter einlesen
@@ -89,7 +89,7 @@ namespace SnakesAndLaddersLibTests
         [TestCase(4, 1, 0)]
         [TestCase(4, 1, 0)]
         [TestCase(0, 1, 0)]
-        public void Move_On_Ladder_Should_Return_ExpectedYField(int xPosition, int yPosition , int expectedPosition)// später durch: ...End_of_Ladder() ersetzen//int startX, int startY, int endLadder01X, int endLadder01Y, int size, int expectedX, int expectedY
+        public void Move_On_Ladder_Should_Return_ExpectedYField(int xPosition, int yPosition , int expectedPosition)// später durch: ...End_of_Ladder() ersetzen
         {
             // later: var result = LadderMove(previousPosition); 
             var oldX = xPosition; // later: previousPosition.Item1;
@@ -100,6 +100,8 @@ namespace SnakesAndLaddersLibTests
             result.Should().Be(expectedPosition); 
         }
 
+        // When reaching a position (x, y) assuming there is a small ladder:
+        // move piece to the position directly above the current position
         public static int LadderMove(int x, int y)// later: (int, int) previousPosition) // later: LadderResult LadderMove((int, int) previousPosition, int endLadder01X, int endLadder01Y)
         {
             var oldX = x;// later: previousPosition.Item1;
@@ -110,6 +112,21 @@ namespace SnakesAndLaddersLibTests
 
             return newY;//later: new LadderResult(newPosition, false);
 
+        }
+
+        [Test]
+        // A ladder should never start in the last row (y = 0);
+        // so make sure the starting position of a ladder > 0 (and here <= 4)
+        public void CreateLadder_Should_Return_IntInRange1To4()
+        {
+            var startPosition = CreateLadder();
+            startPosition.Should().BeOfType(typeof(int));
+            startPosition.Should().BeInRange(1, 4);
+        }
+
+        private int CreateLadder()
+        {
+            return 0;
         }
     }
 }
