@@ -117,16 +117,20 @@ namespace SnakesAndLaddersLibTests
         [Test]
         // A ladder should never start in the last row (y = 0);
         // so make sure the starting position of a ladder > 0 (and here <= 4)
-        public void CreateLadder_Should_Return_IntInRange1To4()
+        public void CreateLadder_Should_Return_IntInRange1To4() //later: int size
         {
             var startPosition = CreateLadder();
             startPosition.Should().BeOfType(typeof(int));
-            startPosition.Should().BeInRange(1, 4);
+
+            // later: var maxY = size - 1;
+            startPosition.Should().BeInRange(1, 4); // maxY);
         }
 
         private int CreateLadder()
         {
-            return 1;
+            var random = new Random();
+            var result = random.Next(1, 4);
+            return result;
         }
     }
 }
